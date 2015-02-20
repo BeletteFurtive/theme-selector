@@ -13,23 +13,21 @@
 		<property name="title" translatable="yes">Awesome theme chooser</property>
         <property name="show-close-button">True</property>
 		<child>
-		  <object class="GtkToggleButton" id="search">
-			<property name="visible">True</property>
-			<property name="sensitive">False</property>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkMenuButton" id="gears">
-			<property name="visible">True</property>
-			<property name="direction">none</property>
-			<property name="use-popover">True</property>
+          <object class="GtkButton" id="buttonRestartAwesome">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <signal name="clicked" handler="on_buttonRestartAwesome_clicked" swapped="no"/>
 			<style>
-			  <class name="image-button"/>
-			</style>
-		  </object>
-		  <packing>
-			<property name="pack-type">end</property>
-		  </packing>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="search-icon">
+                <property name="visible">True</property>
+                <property name="icon-name">view-refresh</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
 		</child>
 	  </object>
 	</child>
