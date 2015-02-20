@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkWindow" id="mainWindow">
+	<property name="can_focus">False</property>
+	<property name="title" translatable="yes">Awesome theme chooser</property>
+    <property name="default_width">440</property>
+    <property name="default_height">250</property>
+	<signal name="delete-event" handler="on_mainWindow_quit" swapped="no"/>
+	<child type="titlebar">
+	  <object class="GtkHeaderBar" id="header">
+		<property name="visible">True</property>
+		<property name="title" translatable="yes">Awesome theme chooser</property>
+        <property name="show-close-button">True</property>
+		<child>
+		  <object class="GtkToggleButton" id="search">
+			<property name="visible">True</property>
+			<property name="sensitive">False</property>
+		  </object>
+		</child>
+		<child>
+		  <object class="GtkMenuButton" id="gears">
+			<property name="visible">True</property>
+			<property name="direction">none</property>
+			<property name="use-popover">True</property>
+			<style>
+			  <class name="image-button"/>
+			</style>
+		  </object>
+		  <packing>
+			<property name="pack-type">end</property>
+		  </packing>
+		</child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkGrid" id="mainGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">15</property>
+        <property name="margin_right">15</property>
+        <property name="margin_bottom">15</property>
+        <property name="margin_top">15</property>
+        <child>
+		  <object class="GtkLabel" id="labelConfigFile">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Fichier de configuration :</property>
+          </object>
+		  <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+		</child>
+		<child>
+          <object class="GtkLabel" id="labelAwesomeTheme">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Theme d'Awesome</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+          </packing>
+		</child>
+		<child>
+		  <object class="GtkLabel" id="label1">
+			<property name="visible">True</property>
+			<property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="comboboxAwesomeTheme">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <signal name="changed" handler="on_comboboxAwesomeTheme_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="combobox1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFileChooserButton" id="filechooserbutton1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="labelTheme">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Theme :
+			</property>
+            <property name="ellipsize">end</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+	  </object>
+	</child>
+  </object>
+</interface>
+

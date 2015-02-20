@@ -6,11 +6,16 @@ import re
 
 class FolderListing:
 
+    @property
+    def folderlist(self):
+        return self.folder_list
+   
     def __init__(self):
         self.folder_list = []
 
         self.userPath = ""
         self.sysPath = ""
+        self.test = 50
 
         if self.checkPath(path.expanduser("~/.config/awesome/themes/")):
             self.userPath = path.expanduser("~/.config/awesome/themes/*")
@@ -63,16 +68,14 @@ class FolderListing:
         
 
 
-f = FolderListing()
-#f.defineTheme("/home/belette/.config/awesome/themes/manjaro-blue")
-#f.defineTheme(f.folder_list[1])
-inputVar = input("Number of theme to install (0 par defaut) : ")
-iv = f.convertStr(inputVar)
+        def commandline(self):
+            inputVar = input("Number of theme to install (0 par defaut) : ")
+            iv = self.convertStr(inputVar)
 
-while iv==-1 or iv<0 or iv>=len(f.folder_list):
-    inputVar = input("Number of theme to install (0 par defaut) : ")
-    iv = f.convertStr(inputVar)
+            while iv==-1 or iv<0 or iv>=len(self.folder_list):
+                inputVar = input("Number of theme to install (0 par defaut) : ")
+                iv = self.convertStr(inputVar)
 
-print("ok")
-f.defineTheme(f.folder_list[iv])
+            print("ok")
+            self.defineTheme(self.folder_list[iv])
 
