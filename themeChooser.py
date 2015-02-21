@@ -23,8 +23,8 @@ class FolderListing:
 
         self.userPath = ""
         self.sysPath = ""
-        self.actual_theme = self.extractActualTheme()
         self.rc_lua = path.expanduser("~/.config/awesome/rc.lua")
+        self.actual_theme = self.extractActualTheme()
         
         if self.checkPath(path.expanduser("~/.config/awesome/themes/")):
             self.userPath = path.expanduser("~/.config/awesome/themes/*")
