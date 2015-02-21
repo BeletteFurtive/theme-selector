@@ -16,7 +16,9 @@ class FolderListing:
         self.userPath = ""
         self.sysPath = ""
         self.test = 50
+        self.actual_theme = self.extractActualTheme()
 
+        
         if self.checkPath(path.expanduser("~/.config/awesome/themes/")):
             self.userPath = path.expanduser("~/.config/awesome/themes/*")
             
@@ -68,14 +70,38 @@ class FolderListing:
         
 
 
-        def commandline(self):
+    def commandline(self):
+        inputVar = input("Number of theme to install (0 par defaut) : ")
+        iv = self.convertStr(inputVar)
+        
+        while iv==-1 or iv<0 or iv>=len(self.folder_list):
             inputVar = input("Number of theme to install (0 par defaut) : ")
             iv = self.convertStr(inputVar)
+            
+        print("ok")
+        self.defineTheme(self.folder_list[iv])
 
-            while iv==-1 or iv<0 or iv>=len(self.folder_list):
-                inputVar = input("Number of theme to install (0 par defaut) : ")
-                iv = self.convertStr(inputVar)
 
-            print("ok")
-            self.defineTheme(self.folder_list[iv])
+    def extractActualTheme(self):
+        f = open(path.expanduser("~/.config/awesome/rc.lua"), "r")
+        re1='(beautiful\\.init)'	# Fully Qualified Domain Name 1
+        re2='(\\()'	# Any Single Character 1
+        re3='.*?'	# Non-greedy match on filler
+        re4='((?:\\/[\\w\\.\\-]+)+)'	# Unix Path 1
+        re5='.*?'	# Non-greedy match on filler
+        re6='(\\))'	# Any Single Character 2
+        
+        rg = re.compile(re1+re2+re3+re4+re5+re6,re.IGNORECASE|re.DOTALL)
 
+        rcLua = f.read()
+
+        f.close()
+        m = rg.search(rcLua)
+
+        if m:
+            fqdn1=m.group(1)
+            c1=m.group(2)
+            unixpath1=m.group(3)
+            c2=m.group(4)
+            print ("("+fqdn1+")"+"("+c1+")"+"("+unixpath1+")"+"("+c2+")"+"\n")
+        return unixpath1

@@ -13,7 +13,7 @@ class Handler:
         
     def on_mainWindow_quit(self, *args):
         Gtk.main_quit(*args)
-
+        
     def on_comboboxAwesomeTheme_changed(self, widget):
         self.f.defineTheme(self.f.folderlist[int(widget.get_active_id())])
 
@@ -31,15 +31,21 @@ def main():
     builder = Gtk.Builder()
     builder.add_from_file("ui.glade")
     builder.connect_signals(Handler(f))
-    
+
     comboboxAwesomeTheme = builder.get_object("comboboxAwesomeTheme")
     
     i = 0
     for name in f.folderlist:
+        if name+"/theme.lua" == f.actual_theme:
+            indic = i
         comboboxAwesomeTheme.append(str(i), path.basename(name))
         i+=1
-    
-    comboboxAwesomeTheme.set_active(0)
+
+
+    comboboxAwesomeTheme.set_active(indic)
+
+                
+
 
 
     button =  builder.get_object("button2")
