@@ -7,17 +7,24 @@ import re
 class FolderListing:
 
     @property
-    def folderlist(self):
+    def folderList(self):
         return self.folder_list
    
+    @property
+    def actualTheme(self):
+        return self.actual_theme
+    
+    @property
+    def rcLua(self):
+        return self.rc_lua
+
     def __init__(self):
         self.folder_list = []
 
         self.userPath = ""
         self.sysPath = ""
-        self.test = 50
         self.actual_theme = self.extractActualTheme()
-
+        self.rc_lua = path.expanduser("~/.config/awesome/rc.lua")
         
         if self.checkPath(path.expanduser("~/.config/awesome/themes/")):
             self.userPath = path.expanduser("~/.config/awesome/themes/*")
@@ -57,14 +64,13 @@ class FolderListing:
         return result
 
     def defineTheme(self, p):
-        #rcLuaOld = open(path.expanduser("~/.config/awesome/rc.lua"), "r")
-        f = open(path.expanduser("~/.config/awesome/rc.lua"), "r")
+        f = open(self.rc_lua, "r")
         rcLuaOld = f.read()
         f.close()
         
         rcLuaNew = re.sub('(beautiful\\.init)'+'(\\()'+'.*?'+'(\\))' ,"beautiful.init("+"\""+p+"/theme.lua\")", rcLuaOld)
         
-        f = open(path.expanduser("~/.config/awesome/rc.lua"), "w")
+        f = open(self.rc_lua, "w")
         f.write(rcLuaNew)
         f.close()
         
@@ -83,7 +89,7 @@ class FolderListing:
 
 
     def extractActualTheme(self):
-        f = open(path.expanduser("~/.config/awesome/rc.lua"), "r")
+        f = open(self.rc_lua, "r")
         re1='(beautiful\\.init)'	# Fully Qualified Domain Name 1
         re2='(\\()'	# Any Single Character 1
         re3='.*?'	# Non-greedy match on filler

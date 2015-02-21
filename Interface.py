@@ -15,10 +15,9 @@ class Handler:
         Gtk.main_quit(*args)
         
     def on_comboboxAwesomeTheme_changed(self, widget):
-        self.f.defineTheme(self.f.folderlist[int(widget.get_active_id())])
+        self.f.defineTheme(self.f.folderList[int(widget.get_active_id())])
 
     def on_buttonRestartAwesome_clicked(self, widget):
-        #subprocess.call( ["echo", "awesome.restart()", "">>"", "caca"])
         p1 = Popen(["echo", "awesome.restart()"], stdout=subprocess.PIPE)
         p2 = Popen(["awesome-client"], stdin=p1.stdout, stdout=subprocess.PIPE)
         p1.stdout.close()
@@ -35,8 +34,10 @@ def main():
     comboboxAwesomeTheme = builder.get_object("comboboxAwesomeTheme")
     
     i = 0
-    for name in f.folderlist:
-        if name+"/theme.lua" == f.actual_theme:
+    indic = 0
+    
+    for name in f.folderList:
+        if name+"/theme.lua" == f.actualTheme:
             indic = i
         comboboxAwesomeTheme.append(str(i), path.basename(name))
         i+=1
@@ -44,12 +45,7 @@ def main():
 
     comboboxAwesomeTheme.set_active(indic)
 
-                
-
-
-
     button =  builder.get_object("button2")
-    
     
     window = builder.get_object("mainWindow")
     window.show_all()
