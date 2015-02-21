@@ -1,11 +1,10 @@
 #!/usr/bin/python
 import argparse
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 from os import path
 import subprocess
 from subprocess import Popen
 import themeChooser
-
 class Handler:
 
     def __init__(self, fol):
@@ -22,6 +21,10 @@ class Handler:
         p2 = Popen(["awesome-client"], stdin=p1.stdout, stdout=subprocess.PIPE)
         p1.stdout.close()
         output = p2.communicate()[0]
+
+    def on_filechooserbutton1_file_changed(self, widget):
+        self.f.rcLua = widget.get_filename()
+        
         
 def main():
 
@@ -45,8 +48,11 @@ def main():
 
     comboboxAwesomeTheme.set_active(indic)
 
-    button =  builder.get_object("button2")
-    
+    filechooser =  builder.get_object("filechooserbutton1")
+
+    fi = Gio.File.new_for_path(f.rcLua) 
+    filechooser.set_file(fi)
+    print(filechooser.get_file())
     window = builder.get_object("mainWindow")
     window.show_all()
 

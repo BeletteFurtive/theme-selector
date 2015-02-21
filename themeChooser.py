@@ -18,6 +18,11 @@ class FolderListing:
     def rcLua(self):
         return self.rc_lua
 
+    @rcLua.setter
+    def rcLua(self, value):
+        self.rc_lua = value
+
+    
     def __init__(self):
         self.folder_list = []
 

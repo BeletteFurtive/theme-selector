@@ -103,6 +103,7 @@
           <object class="GtkFileChooserButton" id="filechooserbutton1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="selection-changed" handler="on_filechooserbutton1_file_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">1</property>
