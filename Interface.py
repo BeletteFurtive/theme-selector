@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import argparse
 from gi.repository import Gtk, Gio
 from os import path
@@ -48,7 +50,7 @@ def main():
 
     comboboxAwesomeTheme.set_active(indic)
 
-    filechooser =  builder.get_object("filechooserbutton1")
+    filechooser =  builder.get_object("filechooserbuttonRcLua")
 
     fi = Gio.File.new_for_path(f.rcLua) 
     filechooser.set_file(fi)

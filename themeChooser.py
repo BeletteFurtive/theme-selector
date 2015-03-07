@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+
 from os import chdir
 from os import path
 import glob
@@ -61,7 +64,6 @@ class FolderListing:
         try:
             result = int(s)
             if result<0 or result>=len(self.folder_list):
-                print("Choisissez un nombre parmi ceux proposés !")
                 result = -1
         except ValueError:
             result = -1
